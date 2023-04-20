@@ -9,47 +9,58 @@ class Connections extends StatelessWidget {
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homepage())); 
+            Navigator.pop(context, MaterialPageRoute(builder: (context) => Homepage())); 
           }
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Card(
-                child: Container(
-                  padding: const EdgeInsets.all(24.0),
-                  width: 150,
-                  height: 200,
-                  color: Colors.blueGrey,
-                  child: Center(
-                    child: Text('Cadence'),
-                  ),
-                ),
-              ),
-              Card(
-                child: Container(
-                  padding: EdgeInsets.all(24.0),
-                  width: 150,
-                  height: 200,
-                  color: Colors.blueGrey,
-                  child: Center(
-                    child: Text('Heart monitor'),
-                  ),
-                ),
-              ),
-            ]
+      body: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.black, Colors.white]
+            )
           ),
-          SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: () => fetchData(context),
-            child: Text('Connect')
-          )
-        ],
-      )
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Card(
+                    child: Container(
+                      padding: const EdgeInsets.all(24.0),
+                      width: 150,
+                      height: 200,
+                      color: Colors.blueGrey,
+                      child: Center(
+                        child: Text('Cadence'),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    child: Container(
+                      padding: EdgeInsets.all(24.0),
+                      width: 150,
+                      height: 200,
+                      color: Colors.blueGrey,
+                      child: Center(
+                        child: Text('Heart monitor'),
+                      ),
+                    ),
+                  ),
+                ]
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () => fetchData(context),
+                child: Text('Connect')
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
