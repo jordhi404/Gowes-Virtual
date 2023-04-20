@@ -1,153 +1,150 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_cycling_app/pages/login_page.dart';
+import 'package:virtual_cycling_app/pages/settingPage.dart';
 
 class SignUp extends StatefulWidget{
-const SignUp({Key? key}) : super(key: key);
-
-  @override
-  _SignUpState createState() => _SignUpState();
+  @override 
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpState extends State<SignUp>{
-  @override
+class _SignUpPageState extends State<SignUp>{
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override 
   Widget build(BuildContext context){
-    return Container(
+    final subtitle = Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(10),
+      child: Text(
+        'Sign up',
+        style: TextStyle(
+          fontSize: 20
+        ),
+      ),
+    );
+    final inputFullName = Padding(
+      padding: EdgeInsets.only(bottom: 10),
+      child: TextField(
+        controller: nameController,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'Full Name',
+          contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))
+        ),
+      ),
+    );
+    final inputUsername = Padding(
+      padding: EdgeInsets.only(bottom: 10),
+      child: TextField(
+        controller: nameController,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'username',
+          contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))
+        ),
+      ),
+    );
+    final inputPassword = Padding(
+      padding: EdgeInsets.only(bottom: 20),
+      child: TextField(
+        controller: passwordController,
+        obscureText: true,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'Password',
+          contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(50.0)
+          )
+        ),
+      ),
+    );
+    final confirmPassword = Padding(
+      padding: EdgeInsets.only(bottom: 20),
+      child: TextField(
+        controller: passwordController,
+        obscureText: true,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'Confirm Password',
+          contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(50.0)
+          )
+        ),
+      ),
+    );
+    final buttonRegister = Padding(
+      padding: EdgeInsets.only(bottom: 5),
+      child: ButtonTheme(
+        height: 56,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0)
+            ))
+          ),
+          child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 20)),
+          onPressed: () => {
+            Navigator.push(context, MaterialPageRoute(builder: ((context) => Login())))
+          },
+        ),
+      ),
+    );
+
+    return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: BackButton(
-            color: Colors.black,
-            onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
+          backgroundColor: Colors.transparent,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => settings()));
+                }, 
+                icon: Icon(Icons.settings)
+              );
             },
           ),
         ),
-        body: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 35, top: 30),
-              child: Text('Create account',
-              style: TextStyle(color: Colors.red, fontSize: 33),),
+        body: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.black, Colors.white]
+              )
             ),
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.28),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 35, right: 35),
-                      child: Column(
-                        children: [
-                          // Name text field.
-                          TextField(
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              hintText: "Name",
-                              hintStyle: TextStyle(color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-
-                          // Email text field.
-                          TextField(
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              hintText: "Email",
-                              hintStyle: TextStyle(color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-
-                          // Password text field.
-                          TextField(
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              hintText: "Password",
-                              hintStyle: TextStyle(color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-
-                          // Confirm password text field.
-                          TextField(
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              hintText: "Confirm password",
-                              hintStyle: TextStyle(color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: (){
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
-                                }, 
-                                child: Text('sign in',
-                                textAlign: TextAlign.center, style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Colors.red,
-                                  fontSize: 18),
-                                ),
-                                style: ButtonStyle(),
-                              ),
-                            ],
-                          )
-                        ]),
-                    )
-                  ],),
+            child: Padding(
+              padding: const EdgeInsets.all(36.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 155.0,
+                    child: Image.asset("assets/LOGO GOWES VIRTUAL-01.png", fit: BoxFit.contain)
+                  ),
+                  ListView(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    children: <Widget>[
+                      subtitle, inputFullName, inputUsername, inputPassword, confirmPassword, buttonRegister
+                    ],
+                  )
+                ],
               ),
-            )
-          ]),
+            ),
+          )
+        ),
       ),
     );
   }
