@@ -91,9 +91,20 @@ class _SignUpPageState extends State<SignUp>{
               borderRadius: BorderRadius.circular(18.0)
             ))
           ),
-          child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 20)),
-          onPressed: () => {
-            Navigator.push(context, MaterialPageRoute(builder: ((context) => Login())))
+          child: Text('Register', style: TextStyle(color: Colors.white, fontSize: 20)),
+          onPressed: () {
+            showDialog<String>(
+              context: context, 
+              builder: (BuildContext context) => AlertDialog(
+                content: const Text('You are successfully registered!'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => Login()))), 
+                    child: const Text('Ok'),
+                  ),
+                ],
+              ),
+            ); 
           },
         ),
       ),
