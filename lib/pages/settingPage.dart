@@ -12,11 +12,6 @@ class settings extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
-        leading: BackButton(
-          onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homepage()));
-          }
-        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(8),
